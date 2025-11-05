@@ -21,9 +21,7 @@ jobs:
     
     - name: Install dependencies
       run: npm install --legacy-peer-deps
-      env:
-        NODE_OPTIONS: '--openssl-legacy-provider'
-    
+
     - name: Build JavaScript components
       run: npm run build
 
