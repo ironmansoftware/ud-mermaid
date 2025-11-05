@@ -19,17 +19,6 @@ jobs:
       with:
         node-version: '16'
     
-    - name: Install dependencies
-      run: npm install --legacy-peer-deps
-
-    - name: Build JavaScript components
-      run: npm run build
-
-    - name: Install InvokeBuild
-      shell: pwsh
-      run: |
-        Install-Module -Name InvokeBuild -Force -Scope CurrentUser
-    
     - name: Build PowerShell module
       shell: pwsh
       run: |

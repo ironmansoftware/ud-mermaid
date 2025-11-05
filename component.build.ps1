@@ -6,7 +6,6 @@ task Build {
 	Set-Location $PSScriptRoot
 
 	&{
-		$env:NODE_OPTIONS="--openssl-legacy-provider";
 		$ErrorActionPreference = 'SilentlyContinue'
 		npm install --legacy-peer-deps
 		npm run build
