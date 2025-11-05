@@ -1,6 +1,6 @@
 # UniversalDashboard.Mermaid
 
-A PowerShell Universal Dashboard component that enables rendering of [Mermaid](https://mermaid.js.org/) diagrams within Universal Dashboard applications. Mermaid is a JavaScript-based diagramming and charting tool that allows you to create complex diagrams using a simple markdown-like syntax.
+A PowerShell Universal component that enables rendering of [Mermaid](https://mermaid.js.org/) diagrams within Universal applications. Mermaid is a JavaScript-based diagramming and charting tool that allows you to create complex diagrams using a simple markdown-like syntax.
 
 ![Mermaid Diagram Example](screenshot.png)
 
