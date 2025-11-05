@@ -19,6 +19,11 @@ jobs:
       with:
         node-version: '16'
     
+    - name: Install InvokeBuild
+      shell: pwsh
+      run: |
+        Install-Module -Name InvokeBuild -Force -Scope CurrentUser
+    
     - name: Build PowerShell module
       shell: pwsh
       run: |
