@@ -13,7 +13,7 @@ A PowerShell Universal component that enables rendering of [Mermaid](https://mer
 
 ## Installation
 
-### From PowerShell Gallery (Coming Soon)
+### From PowerShell Gallery
 
 ```powershell
 Install-Module -Name UniversalDashboard.Mermaid
