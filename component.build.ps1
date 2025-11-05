@@ -6,16 +6,17 @@ task Build {
 	Set-Location $PSScriptRoot
 
 	&{
+		$env:NODE_OPTIONS="--openssl-legacy-provider";
 		$ErrorActionPreference = 'SilentlyContinue'
-		npm install
+		npm install --legacy-peer-deps
 		npm run build
 	}
 
 	New-Item -Path $OutputPath -ItemType Directory
 
 	Copy-Item $PSScriptRoot\public\*.* $OutputPath
-	Copy-Item $PSScriptRoot\UniversalDashboard.*.psd1 $OutputPath
-	Copy-Item $PSScriptRoot\UniversalDashboard.*.psm1 $OutputPath
+	Copy-Item $PSScriptRoot\UniversalDashboard.Mermaid.psd1 $OutputPath
+	Copy-Item $PSScriptRoot\UniversalDashboard.Mermaid.psm1 $OutputPath
 }
 
 task . Build

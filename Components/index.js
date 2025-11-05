@@ -1,3 +1,3 @@
 
-import UDComponent from './component';
-UniversalDashboard.register("ud-component", UDComponent);
+import UDMermaid from './mermaid';
+UniversalDashboard.register("ud-mermaid", UDMermaid);

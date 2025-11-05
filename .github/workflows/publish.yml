@@ -1,0 +1,55 @@
+name: Build and Publish to PowerShell Gallery
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+    
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+      env:
+        NODE_OPTIONS: '--openssl-legacy-provider'
+    
+    - name: Build JavaScript components
+      run: npm run build
+      env:
+        NODE_OPTIONS: '--openssl-legacy-provider'
+    
+    - name: Install InvokeBuild
+      shell: pwsh
+      run: |
+        Install-Module -Name InvokeBuild -Force -Scope CurrentUser
+    
+    - name: Build PowerShell module
+      shell: pwsh
+      run: |
+        Invoke-Build -File .\component.build.ps1
+    
+    - name: Test module loads
+      shell: pwsh
+      run: |
+        $module = Test-ModuleManifest -Path .\output\UniversalDashboard.Mermaid.psd1
+        Write-Host "Module: $($module.Name)"
+        Write-Host "Version: $($module.Version)"
+        Write-Host "Author: $($module.Author)"
+    
+    - name: Publish to PowerShell Gallery
+      shell: pwsh
+      run: |
+        Publish-Module -Path .\output -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose
+      env:
+        PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}

@@ -23,7 +23,9 @@ module.exports = (env) => {
     module : {
       rules : [
         { test: /\.css$/, loader: "style-loader!css-loader" },
-        { test: /\.(js|jsx)$/, exclude: [/node_modules/, /public/], loader: 'babel-loader'},
+        { test: /\.(js|jsx|mjs)$/, exclude: [/public/], loader: 'babel-loader', options: {
+          configFile: path.resolve(__dirname, '.babelrc')
+        }},
         { test: /\.(eot|ttf|woff2?|otf|svg|png)$/, loader:'file-loader', options: {
           name: '[name].[ext]'
         } }
@@ -36,7 +38,7 @@ module.exports = (env) => {
       'react-dom': 'reactdom'
     },
     resolve: {
-      extensions: ['.json', '.js', '.jsx']
+      extensions: ['.json', '.js', '.jsx', '.mjs']
     },
     devtool: 'source-map',
     devServer: {
