@@ -40,6 +40,7 @@ jobs:
     - name: Publish to PowerShell Gallery
       shell: pwsh
       run: |
-        Publish-Module -Path .\output -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose
+        Rename-Item .\output .\UniversalDashboard.Mermaid
+        Publish-Module -Path .\UniversalDashboard.Mermaid -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose
       env:
         PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
